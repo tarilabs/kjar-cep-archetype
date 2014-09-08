@@ -47,7 +47,7 @@ public class RuleTest {
         		LOG.info("kp " + kp + " rule " + rule.getName());
         	}
         }
-        
+
         LOG.info("Creating kieSession");
         KieSessionConfiguration config = kieServices.newKieSessionConfiguration();
 		config.setOption( ClockTypeOption.get("pseudo") );
@@ -56,27 +56,27 @@ public class RuleTest {
         
         LOG.info("Populating globals");
         Set<String> check = new HashSet<String>();
-        session.setGlobal("assertLast2m", check);
+        session.setGlobal("controlSet", check);
         
         LOG.info("Now running data");
         
-        clock.advanceTime(1, TimeUnit.MINUTES);
+		clock.advanceTime(1, TimeUnit.MINUTES);
         Measurement mRed= new Measurement("color", "red");
         session.insert(mRed);
         session.fireAllRules();
         
-        clock.advanceTime(1, TimeUnit.MINUTES);
+		clock.advanceTime(1, TimeUnit.MINUTES);
         Measurement mGreen= new Measurement("color", "green");
         session.insert(mGreen);
         session.fireAllRules();
         
-        clock.advanceTime(1, TimeUnit.MINUTES);
+		clock.advanceTime(1, TimeUnit.MINUTES);
         Measurement mBlue= new Measurement("color", "blue");
         session.insert(mBlue);
         session.fireAllRules();
         
         LOG.info("Final checks");
-        
+
         assertEquals("Size of object in Working Memory is 2 for the last 2", 2, session.getObjects().size());
         assertFalse("contains red", check.contains("red"));
         assertTrue("contains green", check.contains("green"));

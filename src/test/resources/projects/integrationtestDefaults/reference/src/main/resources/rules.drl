@@ -1,6 +1,6 @@
 package it.pkg;
 
-global java.util.Set assertLast2m;
+global java.util.Set controlSet;
 
 declare Measurement
 	@role(event)
@@ -13,6 +13,6 @@ when
 				 $mySet : collectSet( $colorVal )
 				 )  
 then
-	assertLast2m.clear();
-	assertLast2m.addAll($mySet);
+	controlSet.clear();
+	controlSet.addAll($mySet);
 end

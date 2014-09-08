@@ -9,6 +9,9 @@
         <requiredProperty key="pomEclipseCompatible">
             <defaultValue>true</defaultValue>
         </requiredProperty>
+        <requiredProperty key="exampleWithCEP">
+            <defaultValue>true</defaultValue>
+        </requiredProperty>
     </requiredProperties>
   <fileSets>
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
